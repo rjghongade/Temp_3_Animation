@@ -35,7 +35,7 @@ const FloatingButtons = () => {
   ];
 
   return (
-    <div className="fixed bottom-12 right-8 z-50 flex flex-col-reverse items-end gap-4 animate-pulse">
+    <div className="fixed bottom-12 right-8 z-50 flex flex-col-reverse items-end gap-4 animate-blink ">
       {/* Floating Buttons */}
       <AnimatePresence>
         {isExpanded && (

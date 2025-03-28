@@ -107,10 +107,7 @@ const PropertyDetails = () => {
                 <p><strong className="text-[#312223]">Builder:</strong> {property.builder_name}</p>
                 <p><strong className="text-[#312223]">Size Range:</strong> {property.property_price_range}</p>
                 <p><strong className="text-[#312223]">Type:</strong> {property.property_type_price_range}</p>
-                <p><strong className="text-[#312223]">Bedrooms:</strong> {property.property_bedroom || "N/A"}</p>
-                <p><strong className="text-[#312223]">Bathrooms:</strong> {property.property_bathroom || "N/A"}</p>
-                <p><strong className="text-[#312223]">Built Year:</strong> {property.property_built_year || "N/A"}</p>
-                <p><strong className="text-[#312223]">Garage:</strong> {property.property_garage || "N/A"}</p>
+                
               </motion.div>
             )}
 

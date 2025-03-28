@@ -23,7 +23,7 @@ const UnitLayouts = () => {
   // Animation Variants
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
@@ -34,8 +34,8 @@ const UnitLayouts = () => {
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { 
-      y: 0, 
+    visible: {
+      y: 0,
       opacity: 1,
       transition: {
         type: "spring",
@@ -50,12 +50,12 @@ const UnitLayouts = () => {
   };
 
   const modalVariants = {
-    hidden: { 
-      opacity: 0, 
-      scale: 0.9 
+    hidden: {
+      opacity: 0,
+      scale: 0.9
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
       transition: {
         type: "spring",
@@ -63,8 +63,8 @@ const UnitLayouts = () => {
         stiffness: 200
       }
     },
-    exit: { 
-      opacity: 0, 
+    exit: {
+      opacity: 0,
       scale: 0.9,
       transition: {
         duration: 0.2
@@ -73,15 +73,15 @@ const UnitLayouts = () => {
   };
 
   return (
-    <motion.section 
+    <motion.section
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      id="UnitLayouts" 
+      id="UnitLayouts"
       className="bg-gradient-to-br from-[#170505] via-[#312223] to-[#170505] py-12 px-5 text-[#5f7858]"
     >
       <div className="max-w-6xl mx-auto">
-        <motion.h2 
+        <motion.h2
           variants={itemVariants}
           className="text-3xl font-bold text-center text-[#d1b578] mb-6"
         >
@@ -89,14 +89,14 @@ const UnitLayouts = () => {
         </motion.h2>
 
         {layouts.length === 0 ? (
-          <motion.p 
+          <motion.p
             variants={itemVariants}
             className="text-center text-[#d1b578] opacity-80"
           >
             No unit layouts available.
           </motion.p>
         ) : (
-          <motion.div 
+          <motion.div
             variants={containerVariants}
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
           >
@@ -116,14 +116,14 @@ const UnitLayouts = () => {
                   className="w-full h-56 object-cover rounded-t-xl"
                 />
                 <div className="p-6">
-                  <motion.h3 
+                  <motion.h3
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     className="text-2xl font-semibold text-[#170505]"
                   >
                     {layout.layout_name}
                   </motion.h3>
-                  <motion.p 
+                  <motion.p
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.1 }}
@@ -132,7 +132,7 @@ const UnitLayouts = () => {
                     {layout.unit_layout_heading}
                   </motion.p>
                   <div className="mt-4 space-y-2">
-                    <motion.p 
+                    <motion.p
                       initial={{ x: -20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: 0.2 }}
@@ -140,7 +140,7 @@ const UnitLayouts = () => {
                     >
                       <strong>Carpet Area:</strong> {layout.unit_layout_carpet_area || "N/A"}
                     </motion.p>
-                    <motion.p 
+                    <motion.p
                       initial={{ x: -20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: 0.3 }}
@@ -149,17 +149,26 @@ const UnitLayouts = () => {
                       <strong>Price:</strong> ₹{layout.unit_layout_price || "N/A"}
                     </motion.p>
                   </div>
-                  <motion.button
-                    whileHover={{ 
-                      scale: 1.05,
-                      transition: { type: "spring", stiffness: 300 }
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => openModal(layout)}
-                    className="mt-6 bg-gradient-to-r from-[#5f7858] to-[#d1b578] hover:from-[#d1b578] hover:to-[#5f7858] text-white text-sm font-medium px-6 py-3 rounded-lg w-full transition"
-                  >
-                    View Details
-                  </motion.button>
+                  <div className="mt-6 flex flex-col md:flex-row md:justify-between gap-4">
+                    <motion.button
+                      whileHover={{ scale: 1.05, transition: { type: "spring", stiffness: 300 } }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => openModal(layout)}
+                      className="bg-gradient-to-r from-[#5f7858] to-[#d1b578] hover:from-[#d1b578] hover:to-[#5f7858] text-white text-sm font-medium px-6 py-3 rounded-lg w-full md:w-auto transition"
+                    >
+                      View Details
+                    </motion.button>
+
+                    <motion.a
+                      whileHover={{ scale: 1.05, transition: { type: "spring", stiffness: 300 } }}
+                      whileTap={{ scale: 0.95 }}
+                      href="#contact"
+                      className="bg-gradient-to-r from-[#5f7858] to-[#d1b578] hover:from-[#d1b578] hover:to-[#5f7858] text-white text-sm font-medium px-6 py-3 rounded-lg w-full md:w-auto transition"
+                    >
+                      More
+                    </motion.a>
+                  </div>
+
                 </div>
               </motion.div>
             ))}
@@ -192,7 +201,7 @@ const UnitLayouts = () => {
                   &times;
                 </motion.button>
 
-                <motion.h3 
+                <motion.h3
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   className="text-3xl font-semibold text-[#170505] mb-4"
@@ -206,7 +215,7 @@ const UnitLayouts = () => {
                   alt={selectedLayout.layout_name}
                   className="w-full h-64 object-cover rounded-xl mb-4"
                 />
-                <motion.p 
+                <motion.p
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.1 }}
@@ -214,7 +223,7 @@ const UnitLayouts = () => {
                 >
                   {selectedLayout.unit_layout_heading}
                 </motion.p>
-                <motion.p 
+                <motion.p
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
@@ -222,7 +231,7 @@ const UnitLayouts = () => {
                 >
                   <strong>Carpet Area:</strong> {selectedLayout.unit_layout_carpet_area || "N/A"}
                 </motion.p>
-                <motion.p 
+                <motion.p
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -231,7 +240,7 @@ const UnitLayouts = () => {
                   <strong>Price:</strong> ₹{selectedLayout.unit_layout_price || "N/A"}
                 </motion.p>
 
-                <motion.h4 
+                <motion.h4
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.4 }}
@@ -239,7 +248,7 @@ const UnitLayouts = () => {
                 >
                   More Details:
                 </motion.h4>
-                <motion.p 
+                <motion.p
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.5 }}

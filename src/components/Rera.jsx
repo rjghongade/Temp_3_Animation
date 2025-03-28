@@ -118,7 +118,7 @@ const ReraInformation = () => {
               rel="noopener noreferrer"
               className="px-5 py-2 text-white font-medium bg-[#d4af37] hover:bg-[#b08930] rounded-lg flex items-center transition-all duration-300 shadow-lg hover:shadow-[#d4af37]/50"
             >
-              Verify on RERA <ExternalLink size={16} className="ml-2 animate-spin" />
+              Verify on RERA <ExternalLink size={16} className="ml-2 animate-pulse" />
             </a>
           </div>
         </motion.div>

@@ -53,9 +53,25 @@ const Header = () => {
           <h2 className="text-lg md:text-2xl text-amber-600 drop-shadow-lg uppercase tracking-wide font-medium">{data.hero_banner_subheading}</h2>
           <p className="mt-2 text-lg md:text-xl text-amber-200 animate-bounce">{data.location} - {data.sublocation}</p>
           <p className="mt-1 text-lg md:text-xl text-amber-100 ">{data.property_type_price_range_text} | {data.property_area_min_max}</p>
-          <a href="#contact" className="mt-8 bg-gradient-to-r  to-amber-600 hover:from-amber-700 hover:to-indigo-700 active:from-purple-800 active:to-indigo-800 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-xl transition-transform transform hover:scale-105 ">
+          <a
+            href="#contact"
+            className="mt-8 bg-gradient-to-r to-amber-600 hover:from-amber-700 hover:to-indigo-700 active:from-purple-800 active:to-indigo-800 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-xl transition-transform transform hover:scale-105"
+            style={{
+              animation: "wiggle 0.5s ease-in-out infinite"
+            }}
+          >
             Enquire Now
           </a>
+
+          <style>
+            {`
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(3deg); }
+    }
+  `}
+          </style>
+
         </div>
       </div>
 
