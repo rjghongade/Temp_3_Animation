@@ -87,7 +87,7 @@ const FAQ = () => {
         }}
         whileTap={{ scale: 0.85, rotate: 5 }}
       >
-        Outher Question
+        Other Question
       </motion.a>
 
       {/* Header */}
