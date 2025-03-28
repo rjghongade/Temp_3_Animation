@@ -3,9 +3,6 @@ import "./App.css";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import HomePage from "./pages/HomePage";
 import BlogContent from "./components/BlogContent";
-import Footer from "./components/Footer";
-import FloatingButtons from "./components/FloatingButtons";
-import { Loader } from "lucide-react";
 
 // Import static SEO data directly
 import seoData from "../public/seodata.json";

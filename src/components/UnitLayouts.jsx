@@ -152,14 +152,14 @@ const UnitLayouts = () => {
                     </motion.p>
                   </div>
                   <div className="mt-6 flex flex-col md:flex-row md:justify-between gap-4">
-                    <motion.button
+                    {/* <motion.button
                       whileHover={{ scale: 1.05, transition: { type: "spring", stiffness: 300 } }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => openModal(layout)}
                       className="bg-gradient-to-r from-[#5f7858] to-[#d1b578] hover:from-[#d1b578] hover:to-[#5f7858] text-white text-sm font-medium px-6 py-3 rounded-lg w-full md:w-auto transition"
                     >
                       View Details
-                    </motion.button>
+                    </motion.button> */}
 
                     <motion.a
                       whileHover={{ scale: 1.05, transition: { type: "spring", stiffness: 300 } }}
