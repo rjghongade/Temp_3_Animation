@@ -48,12 +48,12 @@ const Header = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-[#312223]/30 to-[#170505]"></div>
         </div>
 
-        <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 max-w-4xl mx-auto ">
+        <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-amber-500 drop-shadow-xl animate-pulse">{data.hero_banner_heading}</h1>
           <h2 className="text-lg md:text-2xl text-amber-600 drop-shadow-lg uppercase tracking-wide font-medium">{data.hero_banner_subheading}</h2>
           <p className="mt-2 text-lg md:text-xl text-amber-200 animate-bounce">{data.location} - {data.sublocation}</p>
-          <p className="mt-1 text-lg md:text-xl text-amber-100 ">{data.property_type_price_range_text} | {data.property_area_min_max}</p>
-          <a href="#contact" className="mt-8 bg-gradient-to-r  to-amber-600 hover:from-amber-700 hover:to-indigo-700 active:from-purple-800 active:to-indigo-800 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-xl transition-transform transform hover:scale-105 ">
+          <p className="mt-1 text-lg md:text-xl text-amber-100">{data.property_type_price_range_text} | {data.property_area_min_max}</p>
+          <a href="#contact" className="mt-8 bg-gradient-to-r  to-amber-600 hover:from-amber-700 hover:to-indigo-700 active:from-purple-800 active:to-indigo-800 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-xl transition-transform transform hover:scale-105">
             Enquire Now
           </a>
         </div>
@@ -128,9 +128,9 @@ const Header = () => {
             <div className="flex justify-end p-4">
               <button onClick={() => setMenuOpen(false)} className="text-gray-400 hover:text-white"><FiX size={24} /></button>
             </div>
-            <div className="px-6 py-4">
+            <div className="px-6 py-4 animate-blink">
               <img src={data.logo} alt={data.property_name} className="mb-8 w-32" />
-              <ul className="space-y-6 animate-blink">
+              <ul className="space-y-6">
                 {[
                   { href: 'AmenitiesSection', label: 'Amenities', icon: <FiStar className="mr-1" /> },
                   { href: 'BanksSection', label: 'Price', icon: <span className="mr-1">₹</span> },
@@ -150,7 +150,7 @@ const Header = () => {
                 ))}
               </ul>
               <div className="mt-10 pt-6 border-t border-gray-700">
-                <a href="#contact" onClick={() => setMenuOpen(false)} className="block text-center bg-amber-500 text-white font-medium py-3 px-6 rounded-lg animate-blink">Enquire Now</a>
+                <a href="#contact" onClick={() => setMenuOpen(false)} className="block text-center bg-amber-500 text-white font-medium py-3 px-6 rounded-lg">Enquire Now</a>
               </div>
             </div>
           </div>
