@@ -145,7 +145,27 @@ const ReraInformation = () => {
           ))}
         </motion.div>
       </motion.div>
-
+      <div className="mt-8 flex flex-col sm:flex-row sm:justify-center md:justify-end">
+        <motion.button
+          onClick={() => openDialog()}
+          className="w-full sm:w-auto bg-gradient-to-b from-[#312223]/30 to-[#170505] hover:from-purple-700 hover:to-indigo-700 active:from-purple-800 active:to-indigo-800 text-white font-medium px-6 py-3 rounded-md transition-all duration-200 text-center shadow-lg"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{
+            opacity: 1,
+            scale: [1, 1.05, 1],  // Pulsing effect
+            boxShadow: [
+              "0px 0px 10px rgba(128, 90, 213, 0.5)",
+              "0px 0px 20px rgba(128, 90, 213, 0.8)",
+              "0px 0px 10px rgba(128, 90, 213, 0.5)",
+            ],
+          }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          whileHover={{ scale: 1.1, boxShadow: "0px 0px 25px rgba(128, 90, 213, 0.9)" }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Request Property Documents
+        </motion.button>
+      </div>
       <ContactDialog isOpen={isOpen} onClose={closeDialog} />
     </motion.div>
   );

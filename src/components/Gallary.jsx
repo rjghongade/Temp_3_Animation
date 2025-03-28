@@ -111,6 +111,29 @@ const Gallery = () => {
       ))}
     </Swiper>
   )}
+  {/* Animated Contact Anchor */}
+  <div className="flex justify-center mt-6">
+        <a
+          href="#contact"
+          className="bg-[#d1b578] text-black px-6 py-3 rounded-lg font-bold shadow-lg animate-blink transition-transform duration-500 hover:scale-110"
+        >
+          Contact Us
+        </a>
+      </div>
+
+      <style>
+        {`
+          @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+          }
+          .animate-blink {
+            animation: blink 1.5s infinite alternate;
+          }
+        `}
+      </style>
+    
 
   {/* Lightbox */}
   {selectedImage && (
@@ -143,7 +166,9 @@ const Gallery = () => {
           <ChevronRight size={24} />
         </button>
       </div>
+      
     </div>
+    
   )}
 </div>
 

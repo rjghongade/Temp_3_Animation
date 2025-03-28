@@ -140,7 +140,7 @@ const FloorPlans = () => {
                     href="#contact"
                     className="bg-[#d1b578] hover:bg-[#e6c57f] text-[#170505] font-semibold px-6 py-3 rounded-lg shadow-lg transition-transform transform block text-center"
                   >
-                    See Floor Plan
+                    Get Floor Plan
                   </a>
                 </motion.div>
               </motion.div>

@@ -331,7 +331,7 @@ export const ContactDialog = ({ isOpen, onClose }) => {
               <button
                 type="submit"
                 disabled={submitting}
-                className="py-2 px-4 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-sm font-medium hover:from-purple-700 hover:to-indigo-700 active:from-purple-800 active:to-indigo-800 transition-all duration-300 flex items-center"
+                className="py-2 px-4 rounded-lg bg-gradient-to-b from-[#312223]/30 to-[#170505] text-white text-sm font-medium hover:from-[#d1b578] hover:to-[#d1b578] active:from-purple-800 active:to-indigo-800 transition-all duration-300 flex items-center"
               >
                 {submitting ? (
                   <Loader size={16} className="animate-spin mr-2" />
