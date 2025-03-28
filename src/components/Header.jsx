@@ -122,40 +122,69 @@ const Header = () => {
       </nav>
 
       {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden bg-black/50 backdrop-blur-sm">
-          <div className="absolute right-0 top-0 h-full w-64 bg-gray-900 shadow-2xl transform transition-transform animate-slide-in">
-            <div className="flex justify-end p-4">
-              <button onClick={() => setMenuOpen(false)} className="text-gray-400 hover:text-white"><FiX size={24} /></button>
-            </div>
-            <div className="px-6 py-4 animate-blink">
-              <img src={data.logo} alt={data.property_name} className="mb-8 w-32" />
-              <ul className="space-y-6">
-                {[
-                  { href: 'AmenitiesSection', label: 'Amenities', icon: <FiStar className="mr-1" /> },
-                  { href: 'BanksSection', label: 'Price', icon: <span className="mr-1">₹</span> },
-                  { href: 'FloorPlans', label: 'About', icon: <FiHome className="mr-1" /> },
-                  { href: "Gallery", label: "Gallery", icon: <FiImage className="mr-1" /> },
-                  { href: "Location", label: "Location", icon: <FiMapPin className="mr-1" /> },
-                  { href: "Blogs", label: "Blogs", icon: <FiBook className="mr-1" /> },
-                  { href: 'UnitLayouts', label: 'Layouts', icon: <FiGrid className="mr-1" /> },
-                  { href: 'contact', label: 'Contact', icon: <FiPhone className="mr-1" /> },
-                ].map((item, index) => (
-                  <li key={index}>
-                    <a href={`#${item.href}`} onClick={() => setMenuOpen(false)} className="flex items-center text-gray-300 hover:text-amber-400 transition-colors">
-                      {item.icon}
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-10 pt-6 border-t border-gray-700">
-                <a href="#contact" onClick={() => setMenuOpen(false)} className="block text-center bg-amber-500 text-white font-medium py-3 px-6 rounded-lg">Enquire Now</a>
-              </div>
-            </div>
-          </div>
+      {/* Mobile Menu */}
+{menuOpen && (
+  <div 
+    className="fixed inset-0 z-40 md:hidden bg-black/50 backdrop-blur-sm"
+    onClick={() => setMenuOpen(false)} // Close on outside click
+  >
+    <div 
+      className="absolute right-0 top-0 h-full w-64 bg-gray-900 shadow-2xl transform transition-transform animate-slide-in max-h-screen overflow-y-auto"
+      onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+    >
+      {/* Close Button */}
+      <div className="flex justify-end p-4">
+        <button 
+          onClick={() => setMenuOpen(false)} 
+          className="text-gray-400 hover:text-white"
+        >
+          <FiX size={24} />
+        </button>
+      </div>
+
+      {/* Menu Content */}
+      <div className="px-6 py-4">
+        <img src={data.logo} alt={data.property_name} className="mb-8 w-32" />
+
+        <ul className="space-y-6">
+          {[
+            { href: 'AmenitiesSection', label: 'Amenities', icon: <FiStar className="mr-2" /> },
+            { href: 'BanksSection', label: 'Price', icon: <span className="mr-2">₹</span> },
+            { href: 'FloorPlans', label: 'About', icon: <FiHome className="mr-2" /> },
+            { href: "Gallery", label: "Gallery", icon: <FiImage className="mr-2" /> },
+            { href: "Location", label: "Location", icon: <FiMapPin className="mr-2" /> },
+            { href: "Blogs", label: "Blogs", icon: <FiBook className="mr-2" /> },
+            { href: 'UnitLayouts', label: 'Layouts', icon: <FiGrid className="mr-2" /> },
+            { href: 'contact', label: 'Contact', icon: <FiPhone className="mr-2" /> },
+          ].map((item, index) => (
+            <li key={index}>
+              <a 
+                href={`#${item.href}`} 
+                onClick={() => setMenuOpen(false)} 
+                className="flex items-center text-gray-300 hover:text-amber-400 transition-all duration-300"
+              >
+                {item.icon}
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {/* Enquire Now Button */}
+        <div className="mt-10 pt-6 border-t border-gray-700">
+          <a 
+            href="#contact" 
+            onClick={() => setMenuOpen(false)} 
+            className="block text-center bg-amber-500 text-white font-medium py-3 px-6 rounded-lg hover:bg-amber-600 transition-all duration-300"
+          >
+            Enquire Now
+          </a>
         </div>
-      )}
+      </div>
+    </div>
+  </div>
+)}
+
 
       {/* Styles for animations */}
       <style jsx global>{`
