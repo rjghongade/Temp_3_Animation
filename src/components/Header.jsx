@@ -49,9 +49,9 @@ const Header = () => {
         </div>
 
         <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-bold text-amber-500 drop-shadow-xl animate-pulse">{data.hero_banner_heading}</h1>
+          <h1 className="text-5xl md:text-7xl font-bold text-amber-500 drop-shadow-xl">{data.hero_banner_heading}</h1>
           <h2 className="text-lg md:text-2xl text-amber-600 drop-shadow-lg uppercase tracking-wide font-medium">{data.hero_banner_subheading}</h2>
-          <p className="mt-2 text-lg md:text-xl text-amber-200 animate-bounce">{data.location} - {data.sublocation}</p>
+          <p className="mt-2 text-lg md:text-xl text-amber-200">{data.location} - {data.sublocation}</p>
           <p className="mt-1 text-lg md:text-xl text-amber-100">{data.property_type_price_range_text} | {data.property_area_min_max}</p>
           <a href="#contact" className="mt-8 bg-gradient-to-r  to-amber-600 hover:from-amber-700 hover:to-indigo-700 active:from-purple-800 active:to-indigo-800 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-xl transition-transform transform hover:scale-105">
             Enquire Now
@@ -66,7 +66,7 @@ const Header = () => {
             <img src={data.logo} alt={data.property_name} className={`transition-all duration-300 ${scrolled ? 'h-12' : 'h-16'} max-w-[120px]`} />
           </a>
 
-          <div className="hidden md:flex space-x-6 text-sm font-medium animate-bounce">
+          <div className="hidden md:flex space-x-6 text-sm font-medium">
             {[
               { href: 'AmenitiesSection', label: 'Amenities', icon: <FiStar className="mr-1" /> },
               { href: 'BanksSection', label: 'Price', icon: <span className="mr-1">₹</span> },
@@ -122,69 +122,40 @@ const Header = () => {
       </nav>
 
       {/* Mobile Menu */}
-      {/* Mobile Menu */}
-{menuOpen && (
-  <div 
-    className="fixed inset-0 z-40 md:hidden bg-black/50 backdrop-blur-sm"
-    onClick={() => setMenuOpen(false)} // Close on outside click
-  >
-    <div 
-      className="absolute right-0 top-0 h-full w-64 bg-gray-900 shadow-2xl transform transition-transform animate-slide-in max-h-screen overflow-y-auto"
-      onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
-    >
-      {/* Close Button */}
-      <div className="flex justify-end p-4">
-        <button 
-          onClick={() => setMenuOpen(false)} 
-          className="text-gray-400 hover:text-white"
-        >
-          <FiX size={24} />
-        </button>
-      </div>
-
-      {/* Menu Content */}
-      <div className="px-6 py-4">
-        <img src={data.logo} alt={data.property_name} className="mb-8 w-32" />
-
-        <ul className="space-y-6">
-          {[
-            { href: 'AmenitiesSection', label: 'Amenities', icon: <FiStar className="mr-2" /> },
-            { href: 'BanksSection', label: 'Price', icon: <span className="mr-2">₹</span> },
-            { href: 'FloorPlans', label: 'About', icon: <FiHome className="mr-2" /> },
-            { href: "Gallery", label: "Gallery", icon: <FiImage className="mr-2" /> },
-            { href: "Location", label: "Location", icon: <FiMapPin className="mr-2" /> },
-            { href: "Blogs", label: "Blogs", icon: <FiBook className="mr-2" /> },
-            { href: 'UnitLayouts', label: 'Layouts', icon: <FiGrid className="mr-2" /> },
-            { href: 'contact', label: 'Contact', icon: <FiPhone className="mr-2" /> },
-          ].map((item, index) => (
-            <li key={index}>
-              <a 
-                href={`#${item.href}`} 
-                onClick={() => setMenuOpen(false)} 
-                className="flex items-center text-gray-300 hover:text-amber-400 transition-all duration-300"
-              >
-                {item.icon}
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        {/* Enquire Now Button */}
-        <div className="mt-10 pt-6 border-t border-gray-700">
-          <a 
-            href="#contact" 
-            onClick={() => setMenuOpen(false)} 
-            className="block text-center bg-amber-500 text-white font-medium py-3 px-6 rounded-lg hover:bg-amber-600 transition-all duration-300"
-          >
-            Enquire Now
-          </a>
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 md:hidden bg-black/50 backdrop-blur-sm">
+          <div className="absolute right-0 top-0 h-full w-64 bg-gray-900 shadow-2xl transform transition-transform animate-slide-in">
+            <div className="flex justify-end p-4">
+              <button onClick={() => setMenuOpen(false)} className="text-gray-400 hover:text-white"><FiX size={24} /></button>
+            </div>
+            <div className="px-6 py-4">
+              <img src={data.logo} alt={data.property_name} className="mb-8 w-32" />
+              <ul className="space-y-6">
+                {[
+                  { href: 'AmenitiesSection', label: 'Amenities', icon: <FiStar className="mr-1" /> },
+                  { href: 'BanksSection', label: 'Price', icon: <span className="mr-1">₹</span> },
+                  { href: 'FloorPlans', label: 'About', icon: <FiHome className="mr-1" /> },
+                  { href: "Gallery", label: "Gallery", icon: <FiImage className="mr-1" /> },
+                  { href: "Location", label: "Location", icon: <FiMapPin className="mr-1" /> },
+                  { href: "Blogs", label: "Blogs", icon: <FiBook className="mr-1" /> },
+                  { href: 'UnitLayouts', label: 'Layouts', icon: <FiGrid className="mr-1" /> },
+                  { href: 'contact', label: 'Contact', icon: <FiPhone className="mr-1" /> },
+                ].map((item, index) => (
+                  <li key={index}>
+                    <a href={`#${item.href}`} onClick={() => setMenuOpen(false)} className="flex items-center text-gray-300 hover:text-amber-400 transition-colors">
+                      {item.icon}
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-10 pt-6 border-t border-gray-700">
+                <a href="#contact" onClick={() => setMenuOpen(false)} className="block text-center bg-amber-500 text-white font-medium py-3 px-6 rounded-lg">Enquire Now</a>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-)}
-
+      )}
 
       {/* Styles for animations */}
       <style jsx global>{`
