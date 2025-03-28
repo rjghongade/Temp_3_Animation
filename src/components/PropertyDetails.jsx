@@ -76,7 +76,7 @@ const PropertyDetails = () => {
             {/* Contact Us Button (Aligned Right) */}
             <div className="flex justify-end mt-6">
               <motion.a
-                href="#Contact"
+                href="#contact"
                 className="relative px-8 py-3 text-lg font-bold text-white bg-gradient-to-r from-[#d1b578] to-[#b99760] rounded-lg shadow-lg transition-all"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
