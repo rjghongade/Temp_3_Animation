@@ -108,13 +108,15 @@ const UnitLayouts = () => {
                 className="bg-[#5f7858] shadow-lg rounded-xl overflow-hidden"
               >
                 <motion.img
-                  initial={{ scale: 1 }}
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 200 }}
+                  initial={{ filter: "blur(8px)" }} // Initial blur effect
+                  animate={{ filter: "blur(3px)" }} // Soft blur after loading
+                  whileHover={{ filter: "blur(0px)", scale: 1.05 }} // Remove blur and scale up on hover
+                  transition={{ duration: 1.2, ease: "easeOut" }} // Smooth transition
                   src={layout.layout_image?.replace("//uploads", "/uploads")}
                   alt={layout.layout_name}
                   className="w-full h-56 object-cover rounded-t-xl"
                 />
+
                 <div className="p-6">
                   <motion.h3
                     initial={{ x: -20, opacity: 0 }}

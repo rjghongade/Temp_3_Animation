@@ -15,7 +15,9 @@ const PropertyDetails = () => {
 
   if (!property) {
     return (
-      <p className="text-center text-gray-500 animate-pulse">Loading property details...</p>
+      <p className="text-center text-gray-500 animate-pulse">
+        Loading property details...
+      </p>
     );
   }
 
@@ -26,7 +28,7 @@ const PropertyDetails = () => {
       animate={{
         background: [
           "linear-gradient(to bottom, #312223, #170505)",
-          "linear-gradient(to bottom, #170505, #312223)"
+          "linear-gradient(to bottom, #170505, #312223)",
         ],
       }}
       transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
@@ -38,9 +40,10 @@ const PropertyDetails = () => {
         className="max-w-6xl mx-auto bg-[#5f7858] text-white shadow-2xl rounded-xl overflow-hidden"
       >
         {/* Property Info */}
-        <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 p-6 sm:p-8">
+        <div className="flex flex-col md:flex-row items-center gap-8 p-6 sm:p-10">
+          {/* Property Image */}
           <motion.div
-            className="w-full md:w-1/2 relative"
+            className="w-full md:w-1/2"
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
             transition={{ duration: 1, repeat: Infinity, repeatType: "mirror" }}
@@ -52,8 +55,11 @@ const PropertyDetails = () => {
             />
           </motion.div>
 
+          {/* Property Details */}
           <div className="flex-1 text-center md:text-left">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#d1b578]">{property.property_name}</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-[#d1b578]">
+              {property.property_name}
+            </h1>
             <p className="text-[#312223] mt-2 text-lg">{property.sub_location}</p>
 
             <motion.div
@@ -67,16 +73,37 @@ const PropertyDetails = () => {
               </span>
             </motion.div>
 
+            {/* Contact Us Button (Aligned Right) */}
+            <div className="flex justify-end mt-6">
+              <motion.a
+                href="#Contact"
+                className="relative px-8 py-3 text-lg font-bold text-white bg-gradient-to-r from-[#d1b578] to-[#b99760] rounded-lg shadow-lg transition-all"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileHover={{
+                  scale: 1.1,
+                  boxShadow: "0px 0px 15px rgba(209, 181, 120, 0.8)",
+                }}
+                whileTap={{ scale: 0.9 }}
+              >
+                Contact Us
+                <motion.span
+                  className="absolute inset-0 rounded-lg border border-white opacity-20"
+                  animate={{ opacity: [0.3, 0.8, 0.3] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                />
+              </motion.a>
+            </div>
+
             {/* Tabs */}
             <div className="mt-6 flex flex-wrap justify-center md:justify-start gap-4 border-b border-[#312223] pb-2">
               {["info", "description", "specifications"].map((tab) => (
                 <motion.button
                   key={tab}
-                  className={`text-base sm:text-lg font-semibold transition-all duration-300 pb-2 ${
-                    activeTab === tab
+                  className={`text-lg font-semibold transition-all duration-300 pb-2 ${activeTab === tab
                       ? "text-[#d1b578] border-b-2 border-[#d1b578]"
                       : "text-[#312223] hover:text-[#d1b578]"
-                  }`}
+                    }`}
                   onClick={() => setActiveTab(tab)}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -84,8 +111,8 @@ const PropertyDetails = () => {
                   {tab === "info"
                     ? "Property Info"
                     : tab === "description"
-                    ? "Description"
-                    : "About Builder"}
+                      ? "Description"
+                      : "About Builder"}
                 </motion.button>
               ))}
             </div>
@@ -104,10 +131,15 @@ const PropertyDetails = () => {
                 transition={{ duration: 0.5 }}
                 className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-[#d1b578]"
               >
-                <p><strong className="text-[#312223]">Builder:</strong> {property.builder_name}</p>
-                <p><strong className="text-[#312223]">Size Range:</strong> {property.property_price_range}</p>
-                <p><strong className="text-[#312223]">Type:</strong> {property.property_type_price_range}</p>
-                
+                <p>
+                  <strong className="text-[#312223]">Builder:</strong> {property.builder_name}
+                </p>
+                <p>
+                  <strong className="text-[#312223]">Size Range:</strong> {property.property_price_range}
+                </p>
+                <p>
+                  <strong className="text-[#312223]">Type:</strong> {property.property_type_price_range}
+                </p>
               </motion.div>
             )}
 
@@ -120,7 +152,7 @@ const PropertyDetails = () => {
                 transition={{ duration: 0.5 }}
                 className="mt-4"
               >
-                <h2 className="text-lg sm:text-xl font-semibold text-[#d1b578]">About the Property</h2>
+                <h2 className="text-xl font-semibold text-[#d1b578]">About the Property</h2>
                 <div className="text-[#d1b578] mt-3 max-h-60 overflow-y-auto p-4 bg-[#170505] bg-opacity-50 border border-[#312223] rounded-lg shadow-lg">
                   <div dangerouslySetInnerHTML={{ __html: property.property_description }} />
                 </div>
@@ -136,7 +168,7 @@ const PropertyDetails = () => {
                 transition={{ duration: 0.5 }}
                 className="mt-4"
               >
-                <h2 className="text-lg sm:text-xl font-semibold text-[#d1b578]">About Builder</h2>
+                <h2 className="text-xl font-semibold text-[#d1b578]">About Builder</h2>
                 <div className="text-[#d1b578] mt-3 max-h-60 overflow-y-auto p-4 bg-[#170505] bg-opacity-50 border border-[#312223] rounded-lg shadow-lg">
                   <div dangerouslySetInnerHTML={{ __html: property.property_specification }} />
                 </div>

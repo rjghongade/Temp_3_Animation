@@ -65,19 +65,39 @@ const FAQ = () => {
 
   return (
     <motion.div 
-      className="bg-gradient-to-br from-[#170505] via-[#312223] to-black p-8"
+      className="bg-gradient-to-br from-[#170505] via-[#312223] to-black p-8 relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
+      {/* Contact Us Anchor with Continuous Floating Animation */}
+      <motion.a
+        href="#contact"
+        className="absolute top-4 right-6 px-5 py-2 rounded-lg font-bold shadow-lg text-black bg-gradient-to-r from-[#d1b578] to-[#b99760] transition-all"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ 
+          opacity: 1, 
+          y: [0, -5, 0], // Floating effect
+        }}
+        transition={{ repeat: Infinity, repeatType: "mirror", duration: 1.5 }}
+        whileHover={{ 
+          scale: 1.15, 
+          backgroundColor: "#ffcc70", 
+          textShadow: "0px 0px 8px rgba(255, 255, 255, 0.8)" 
+        }}
+        whileTap={{ scale: 0.85, rotate: 5 }}
+      >
+        Outher Question
+      </motion.a>
+
       {/* Header */}
       <motion.div 
-        className="mb-10"
+        className="mb-10 text-center"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="text-3xl font-bold text-[#d1b578] text-center">{heading}</h2>
+        <h2 className="text-3xl font-bold text-[#d1b578]">{heading}</h2>
       </motion.div>
 
       {/* FAQ List */}

@@ -26,15 +26,20 @@ const HomePage = () => {
   const closeDialog = () => setIsOpen(false);
 
   useEffect(() => {
-    // Show the popup when the page loads
-    openDialog();
+    // Show the popup after 5 seconds when the page loads
+    const timeout = setTimeout(() => {
+      openDialog();
+    }, 5000);
 
     // Set an interval to show the popup every 5 minutes (300,000ms)
     const popupInterval = setInterval(() => {
       openDialog();
     }, 300000);
 
-    return () => clearInterval(popupInterval); // Cleanup interval on unmount
+    return () => {
+      clearTimeout(timeout); // Cleanup timeout on unmount
+      clearInterval(popupInterval); // Cleanup interval on unmount
+    };
   }, []);
 
   return (

@@ -88,12 +88,15 @@ const FloorPlans = () => {
             >
               {/* Image with Hover Zoom */}
               <motion.img
-                src={plan.layout_image}
-                alt={plan.layout_name}
-                className="w-full h-56 object-cover rounded-t-xl"
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.3 }}
-              />
+  src={plan.layout_image}
+  alt={plan.layout_name}
+  className="w-full h-56 object-cover rounded-t-xl"
+  initial={{ filter: "blur(10px)", opacity: 0 }} // Start with blur & hidden
+  animate={{ filter: "blur(3px)", opacity: 1 }} // Gradually clear up
+  whileHover={{ filter: "blur(0px)", scale: 1.1 }} // No blur & scale up on hover
+  transition={{ duration: 1, ease: "easeOut" }} // Smooth effect
+/>
+
 
               <motion.div
                 className="p-6"
