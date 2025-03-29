@@ -142,14 +142,14 @@ const UnitLayouts = () => {
                     >
                       <strong>Carpet Area:</strong> {layout.unit_layout_carpet_area || "N/A"}
                     </motion.p>
-                    <motion.p
+                    {/* <motion.p
                       initial={{ x: -20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: 0.3 }}
                       className="text-[#312223]"
                     >
                       <strong>Price:</strong> ₹{layout.unit_layout_price || "N/A"}
-                    </motion.p>
+                    </motion.p> */}
                   </div>
                   <div className="mt-6 flex flex-col md:flex-row md:justify-between gap-4">
                     {/* <motion.button
@@ -233,14 +233,14 @@ const UnitLayouts = () => {
                 >
                   <strong>Carpet Area:</strong> {selectedLayout.unit_layout_carpet_area || "N/A"}
                 </motion.p>
-                <motion.p
+                {/* <motion.p
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.3 }}
                   className="text-[#312223] mb-4"
                 >
                   <strong>Price:</strong> ₹{selectedLayout.unit_layout_price || "N/A"}
-                </motion.p>
+                </motion.p> */}
 
                 <motion.h4
                   initial={{ x: -20, opacity: 0 }}

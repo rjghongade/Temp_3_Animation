@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   User,
   Mail,
@@ -21,10 +21,54 @@ export const ContactDialog = ({ isOpen, onClose }) => {
     message: "",
   });
 
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [formErrors, setFormErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // null, 'success', 'error'
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          `${config.API_URL}/header?website=${config.SLUG_URL}`
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch header data");
+        }
+
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+    
+    // Add scroll event listener to detect scrolling for header styling
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleSmoothScroll = (e, section) => {
+    e.preventDefault();
+    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+    setMenuOpen(false);
+    onClose(); // Close the dialog when navigating
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -53,21 +97,17 @@ export const ContactDialog = ({ isOpen, onClose }) => {
       errors.last_name = "Last name is required";
     }
 
-    // if (!formData.email_id.trim()) {
-    //   errors.email_id = "Email is required";
-    // } else if (!/\S+@\S+\.\S+/.test(formData.email_id)) {
-    //   errors.email_id = "Email is invalid";
-    // }
+    if (!formData.email_id.trim()) {
+      errors.email_id = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email_id)) {
+      errors.email_id = "Please enter a valid email address";
+    }
 
     if (!formData.phone_number.trim()) {
       errors.phone_number = "Phone number is required";
     } else if (!/^[0-9]{10}$/.test(formData.phone_number.replace(/\s/g, ""))) {
       errors.phone_number = "Please enter a valid 10-digit phone number";
     }
-
-    // if (!formData.message.trim()) {
-    //   errors.message = "Message is required";
-    // }
 
     return errors;
   };
@@ -127,15 +167,52 @@ export const ContactDialog = ({ isOpen, onClose }) => {
   };
 
   if (!isOpen) return null;
+  
+  // Show loading indicator if data is still loading
+  if (loading) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div className="bg-gray-800 rounded-lg p-8 shadow-2xl animate-pulse">
+          <Loader size={32} className="text-amber-500 animate-spin" />
+        </div>
+      </div>
+    );
+  }
+  
+  // Show error message if there was an error fetching data
+  if (error) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div className="bg-gray-800 rounded-lg p-6 shadow-2xl">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-xl font-semibold text-white">Error</h3>
+            <button onClick={onClose} className="text-gray-400 hover:text-white transition-colors">
+              <X size={24} />
+            </button>
+          </div>
+          <p className="text-red-400">Failed to load content: {error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div className="bg-gray-800 rounded-lg w-full max-w-md shadow-2xl animate-fadeIn">
-        <div className="flex items-center justify-between p-5 border-b border-gray-700">
-          <h3 className="text-xl font-semibold text-white">Contact Us</h3>
+      <div className="bg-[#170505] rounded-lg w-full max-w-md shadow-2xl animate-fadeIn border border-[#312223]">
+        <div className="flex items-center justify-between p-5 border-b border-[#312223]">
+          <div className="flex items-center">
+            {data && data.logo && (
+              <img 
+                src={data.logo} 
+                alt={data.property_name || "Amberwood"} 
+                className="h-12 max-w-[120px] mr-3" 
+              />
+            )}
+            <h3 className="text-xl font-semibold text-[#d1b578]">Contact Us</h3>
+          </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-white transition-colors"
+            className="text-[#d1b578] hover:text-white transition-colors"
           >
             <X size={24} />
           </button>
@@ -161,13 +238,13 @@ export const ContactDialog = ({ isOpen, onClose }) => {
               <div>
                 <label
                   htmlFor="first_name"
-                  className="block text-gray-300 mb-2 text-sm"
+                  className="block text-[#d1b578] mb-2 text-sm"
                 >
                   First Name
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <User size={16} className="text-gray-500" />
+                    <User size={16} className="text-[#5f7858]" />
                   </div>
                   <input
                     type="text"
@@ -175,11 +252,11 @@ export const ContactDialog = ({ isOpen, onClose }) => {
                     name="first_name"
                     value={formData.first_name}
                     onChange={handleInputChange}
-                    className={`w-full bg-gray-800 text-gray-200 border ${
+                    className={`w-full bg-[#1e0c0c] text-[#d1b578] border ${
                       formErrors.first_name
                         ? "border-red-500"
-                        : "border-gray-700"
-                    } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-purple-500`}
+                        : "border-[#312223]"
+                    } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-[#5f7858]`}
                     placeholder="First Name"
                   />
                 </div>
@@ -194,13 +271,13 @@ export const ContactDialog = ({ isOpen, onClose }) => {
               <div>
                 <label
                   htmlFor="last_name"
-                  className="block text-gray-300 mb-2 text-sm"
+                  className="block text-[#d1b578] mb-2 text-sm"
                 >
                   Last Name
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <User size={16} className="text-gray-500" />
+                    <User size={16} className="text-[#5f7858]" />
                   </div>
                   <input
                     type="text"
@@ -208,11 +285,11 @@ export const ContactDialog = ({ isOpen, onClose }) => {
                     name="last_name"
                     value={formData.last_name}
                     onChange={handleInputChange}
-                    className={`w-full bg-gray-800 text-gray-200 border ${
+                    className={`w-full bg-[#1e0c0c] text-[#d1b578] border ${
                       formErrors.last_name
                         ? "border-red-500"
-                        : "border-gray-700"
-                    } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-purple-500`}
+                        : "border-[#312223]"
+                    } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-[#5f7858]`}
                     placeholder="Last Name"
                   />
                 </div>
@@ -228,13 +305,13 @@ export const ContactDialog = ({ isOpen, onClose }) => {
             <div className="mb-4">
               <label
                 htmlFor="email_id"
-                className="block text-gray-300 mb-2 text-sm"
+                className="block text-[#d1b578] mb-2 text-sm"
               >
                 Email Address
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <Mail size={16} className="text-gray-500" />
+                  <Mail size={16} className="text-[#5f7858]" />
                 </div>
                 <input
                   type="email"
@@ -242,30 +319,30 @@ export const ContactDialog = ({ isOpen, onClose }) => {
                   name="email_id"
                   value={formData.email_id}
                   onChange={handleInputChange}
-                  className={`w-full bg-gray-800 text-gray-200 border ${
-                    formErrors.email_id ? "border-red-500" : "border-gray-700"
-                  } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-purple-500`}
+                  className={`w-full bg-[#1e0c0c] text-[#d1b578] border ${
+                    formErrors.email_id ? "border-red-500" : "border-[#312223]"
+                  } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-[#5f7858]`}
                   placeholder="email@example.com"
                 />
               </div>
-              {/* {formErrors.email_id && (
+              {formErrors.email_id && (
                 <p className="mt-1 text-red-400 text-xs flex items-center">
                   <AlertCircle size={12} className="mr-1" />
                   {formErrors.email_id}
                 </p>
-              )} */}
+              )}
             </div>
 
             <div className="mb-4">
               <label
                 htmlFor="phone_number"
-                className="block text-gray-300 mb-2 text-sm"
+                className="block text-[#d1b578] mb-2 text-sm"
               >
                 Phone Number
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <Phone size={16} className="text-gray-500" />
+                  <Phone size={16} className="text-[#5f7858]" />
                 </div>
                 <input
                   type="tel"
@@ -273,11 +350,11 @@ export const ContactDialog = ({ isOpen, onClose }) => {
                   name="phone_number"
                   value={formData.phone_number}
                   onChange={handleInputChange}
-                  className={`w-full bg-gray-800 text-gray-200 border ${
+                  className={`w-full bg-[#1e0c0c] text-[#d1b578] border ${
                     formErrors.phone_number
                       ? "border-red-500"
-                      : "border-gray-700"
-                  } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-purple-500`}
+                      : "border-[#312223]"
+                  } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-[#5f7858]`}
                   placeholder="Your phone number"
                 />
               </div>
@@ -292,13 +369,13 @@ export const ContactDialog = ({ isOpen, onClose }) => {
             <div className="mb-5">
               <label
                 htmlFor="message"
-                className="block text-gray-300 mb-2 text-sm"
+                className="block text-[#d1b578] mb-2 text-sm"
               >
                 Your Message
               </label>
               <div className="relative">
                 <div className="absolute top-3 left-3 pointer-events-none">
-                  <MessageSquare size={16} className="text-gray-500" />
+                  <MessageSquare size={16} className="text-[#5f7858]" />
                 </div>
                 <textarea
                   id="message"
@@ -306,32 +383,26 @@ export const ContactDialog = ({ isOpen, onClose }) => {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows="3"
-                  className={`w-full bg-gray-800 text-gray-200 border ${
-                    formErrors.message ? "border-red-500" : "border-gray-700"
-                  } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-purple-500`}
+                  className={`w-full bg-[#1e0c0c] text-[#d1b578] border ${
+                    formErrors.message ? "border-red-500" : "border-[#312223]"
+                  } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-[#5f7858]`}
                   placeholder="Tell us about your requirements..."
                 ></textarea>
               </div>
-              {/* {formErrors.message && (
-                <p className="mt-1 text-red-400 text-xs flex items-center">
-                  <AlertCircle size={12} className="mr-1" />
-                  {formErrors.message}
-                </p>
-              )} */}
             </div>
 
-            <div className="flex items-center justify-end pt-2 border-t border-gray-700">
+            <div className="flex items-center justify-end pt-2 border-t border-[#312223]">
               <button
                 type="button"
                 onClick={onClose}
-                className="mr-3 px-4 py-2 text-gray-300 hover:text-white transition-colors text-sm"
+                className="mr-3 px-4 py-2 text-[#d1b578] hover:text-white transition-colors text-sm"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={submitting}
-                className="py-2 px-4 rounded-lg bg-gradient-to-b from-[#312223]/30 to-[#170505] text-white text-sm font-medium hover:from-[#d1b578] hover:to-[#d1b578] active:from-purple-800 active:to-indigo-800 transition-all duration-300 flex items-center"
+                className="py-2 px-4 rounded-lg bg-gradient-to-b from-[#5f7858] to-[#3f5138] text-white text-sm font-medium hover:from-[#d1b578] hover:to-[#a18a5f] active:bg-[#312223] transition-all duration-300 flex items-center"
               >
                 {submitting ? (
                   <Loader size={16} className="animate-spin mr-2" />
@@ -359,7 +430,7 @@ const ContactDialogButton = () => {
     <>
       <button
         onClick={openDialog}
-        className="py-2 px-4 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium hover:from-purple-700 hover:to-indigo-700 transition-all duration-300"
+        className="py-2 px-4 rounded-lg bg-gradient-to-b from-[#5f7858] to-[#3f5138] text-white font-medium hover:from-[#d1b578] hover:to-[#a18a5f] active:bg-[#312223] transition-all duration-300"
       >
         Contact Us
       </button>
@@ -369,4 +440,4 @@ const ContactDialogButton = () => {
   );
 };
 
-// export  {ContactDialogButton as default };
+export default ContactDialogButton;

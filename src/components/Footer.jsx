@@ -12,6 +12,7 @@ import {
   Loader,
 } from "lucide-react";
 import config from "../../config";
+import qrImage from "../assets/qr.png";
 
 const Footer = () => {
   const [footerData, setFooterData] = useState(null);
@@ -153,8 +154,12 @@ const Footer = () => {
                 {getSocialIcon(icon.social_icon)}
               </motion.a>
             ))}
+            <div className="flex mt-4">
+              <img src={qrImage} alt="QR Code" className="w-24 h-24 rounded-lg shadow-lg border border-[#5f7858]" />
+            </div>
           </div>
         </motion.div>
+
       </div>
 
       {/* Disclaimer Section */}
@@ -172,6 +177,7 @@ const Footer = () => {
             Agent Rera: {g_setting.footer_agent_rera}
           </p>
         )}
+        <a href="/">Privacy Policy</a>
       </motion.div>
 
       {/* Copyright & Scroll Button */}
