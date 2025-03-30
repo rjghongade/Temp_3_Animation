@@ -32,8 +32,9 @@ const FloorPlans = () => {
       transition={{ duration: 1 }}
     >
       {/* Heading with Glow Effect */}
+      <div className="max-w-6xl mx-auto">
       <motion.div
-        className="max-w-7xl mx-auto"
+        className="max-w-6xl mx-auto"
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
@@ -150,7 +151,9 @@ const FloorPlans = () => {
             </motion.div>
           ))}
         </motion.div>
+        
       )}
+      </div>
     </motion.section>
   );
 };
