@@ -64,81 +64,75 @@ const FAQ = () => {
   }
 
   return (
-    <motion.div 
-      className="bg-gradient-to-br from-[#170505] via-[#312223] to-black p-8 relative"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+<motion.div 
+  className="bg-gradient-to-br from-[#170505] via-[#312223] to-black p-6 md:p-12 lg:p-16 relative"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 1 }}
+>
+  {/* Contact Us Anchor - Fixed for Mobile View */}
+  <motion.a
+    href="#contact"
+    className="relative md:absolute md:top-4 right-0 md:right-6 px-5 py-2 rounded-lg font-bold shadow-lg text-black bg-gradient-to-r from-[#d1b578] to-[#b99760] transition-all mt-4 md:mt-0 block w-full md:w-auto text-center"
+    initial={{ opacity: 0, y: -10 }}
+    animate={{ 
+      opacity: 1, 
+      y: [0, -5, 0], // Floating effect
+    }}
+    transition={{ repeat: Infinity, repeatType: "mirror", duration: 1.5 }}
+    whileHover={{ 
+      scale: 1.15, 
+      backgroundColor: "#ffcc70", 
+      textShadow: "0px 0px 8px rgba(255, 255, 255, 0.8)" 
+    }}
+    whileTap={{ scale: 0.85, rotate: 5 }}
+  >
+    Other Question
+  </motion.a>
+
+  {/* Header */}
+  <motion.div 
+    className="mb-10 text-center"
+    initial={{ y: -20, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{ duration: 0.8 }}
+  >
+    <h2 className="text-3xl font-bold text-[#d1b578]">{heading}</h2>
+  </motion.div>
+
+{/* FAQ List */}
+<div className="max-w-4xl mx-auto space-y-4 px-4 sm:px-6 lg:px-8">
+  {faqs.map((faq) => (
+    <div
+      key={faq.id}
+      className="bg-[#312223]/60 border border-[#312223] rounded-lg"
     >
-      {/* Contact Us Anchor with Continuous Floating Animation */}
-      <motion.a
-        href="#contact"
-        className="absolute top-4 right-6 px-5 py-2 rounded-lg font-bold shadow-lg text-black bg-gradient-to-r from-[#d1b578] to-[#b99760] transition-all"
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ 
-          opacity: 1, 
-          y: [0, -5, 0], // Floating effect
-        }}
-        transition={{ repeat: Infinity, repeatType: "mirror", duration: 1.5 }}
-        whileHover={{ 
-          scale: 1.15, 
-          backgroundColor: "#ffcc70", 
-          textShadow: "0px 0px 8px rgba(255, 255, 255, 0.8)" 
-        }}
-        whileTap={{ scale: 0.85, rotate: 5 }}
+      <button
+        onClick={() => handleQuestionClick(faq.id)}
+        className="w-full flex items-center justify-between p-4 text-left transition-all hover:bg-[#312223] hover:border-[#d1b578]"
       >
-        Other Question
-      </motion.a>
+        <span className="text-[#5f7858] font-medium text-lg">
+          {faq.faq_title}
+        </span>
+        {activeQuestion === faq.id ? (
+          <ChevronDown className="text-[#5f7858]" />
+        ) : (
+          <ChevronRight className="text-[#5f7858]" />
+        )}
+      </button>
 
-      {/* Header */}
-      <motion.div 
-        className="mb-10 text-center"
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <h2 className="text-3xl font-bold text-[#d1b578]">{heading}</h2>
-      </motion.div>
+      {activeQuestion === faq.id && (
+        <div className="p-4 border-t border-[#5f7858] text-[#d1b578]">
+          {stripHtml(faq.faq_content)}
+        </div>
+      )}
+    </div>
+  ))}
+</div>
 
-      {/* FAQ List */}
-      <div className="max-w-4xl mx-auto space-y-4">
-        {faqs.map((faq, index) => (
-          <motion.div
-            key={faq.id}
-            className="bg-[#312223]/60 border border-[#312223] rounded-lg"
-            initial={{ x: index % 2 === 0 ? 50 : -50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            viewport={{ once: false }}
-          >
-            <button
-              onClick={() => handleQuestionClick(faq.id)}
-              className="w-full flex items-center justify-between p-4 text-left transition-all hover:bg-[#312223] hover:border-[#d1b578]"
-            >
-              <span className="text-[#5f7858] font-medium text-lg">
-                {faq.faq_title}
-              </span>
-              {activeQuestion === faq.id ? (
-                <ChevronDown className="text-[#5f7858]" />
-              ) : (
-                <ChevronRight className="text-[#5f7858]" />
-              )}
-            </button>
 
-            {activeQuestion === faq.id && (
-              <motion.div
-                className="p-4 border-t border-[#5f7858] text-[#d1b578]"
-                initial={{ y: -10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.4 }}
-              >
-                {stripHtml(faq.faq_content)}
-              </motion.div>
-            )}
-          </motion.div>
-        ))}
-      </div>
-    </motion.div>
+</motion.div>
+
   );
 };
 
