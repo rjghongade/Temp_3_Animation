@@ -209,7 +209,7 @@ const ContactUs = () => {
           
           <div className="space-y-4">
             <div className="flex items-center">
-              <div className="bg-[#5f7858]/20 p-2 rounded-full mr-3">
+              {/* <div className="bg-[#5f7858]/20 p-2 rounded-full mr-3">
                 <Mail size={20} className="text-[#5f7858]" />
               </div>
               <div>
@@ -217,7 +217,7 @@ const ContactUs = () => {
                 <a href="mailto:contact@example.com" className="text-[#5f7858] hover:text-[#d1b578] transition-colors">
                   contact@example.com
                 </a>
-              </div>
+              </div> */}
             </div>
             
             <div className="flex items-center">
@@ -227,12 +227,12 @@ const ContactUs = () => {
               <div>
                 <p className="text-[#d1b578]">Phone</p>
                 <a href="tel:+1234567890" className="text-[#5f7858] hover:text-[#d1b578] transition-colors">
-                  +1 (234) 567-890
+                  +91 8600020568
                 </a>
               </div>
             </div>
             
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <div className="bg-[#5f7858]/20 p-2 rounded-full mr-3">
                 <MapPin size={20} className="text-[#5f7858]" />
               </div>
@@ -242,7 +242,7 @@ const ContactUs = () => {
                   123 Nature Way, Forestville, CA 95436
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         

@@ -101,8 +101,8 @@ const PropertyDetails = () => {
                 <motion.button
                   key={tab}
                   className={`text-lg font-semibold transition-all duration-300 pb-2 ${activeTab === tab
-                      ? "text-[#d1b578] border-b-2 border-[#d1b578]"
-                      : "text-[#312223] hover:text-[#d1b578]"
+                    ? "text-[#d1b578] border-b-2 border-[#d1b578]"
+                    : "text-[#312223] hover:text-[#d1b578]"
                     }`}
                   onClick={() => setActiveTab(tab)}
                   whileHover={{ scale: 1.1 }}
@@ -121,27 +121,35 @@ const PropertyDetails = () => {
 
         {/* Tab Content Animation */}
         <div className="p-6">
-          <AnimatePresence mode="wait">
-            {activeTab === "info" && (
-              <motion.div
-                key="info"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.5 }}
-                className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-[#d1b578]"
-              >
-                <p>
-                  <strong className="text-[#312223]">Builder:</strong> {property.builder_name}
-                </p>
-                <p>
-                  <strong className="text-[#312223]">Size Range:</strong> {property.property_price_range}
-                </p>
-                <p>
-                  <strong className="text-[#312223]">Type:</strong> {property.property_type_price_range}
-                </p>
-              </motion.div>
-            )}
+        <AnimatePresence mode="wait">
+  {activeTab === "info" && (
+    <motion.div
+      key="info"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.5 }}
+      className="grid grid-cols-1 md:grid-cols-2 gap-6 text-[#d1b578]"
+    >
+      {/* Left Section - Property Description */}
+      <div className="bg-[#170505] bg-opacity-50 border border-[#312223] rounded-lg shadow-lg p-6 max-h-60 overflow-y-auto">
+        <div dangerouslySetInnerHTML={{ __html: property.property_information }} />
+      </div>
+
+      {/* Right Section - Property Details */}
+      <div className="space-y-3 text-lg">
+        <p>
+          <strong className="text-[#d1b578]">Builder:</strong> <span className="text-[#312223]">{property.builder_name}</span>
+        </p>
+        <p>
+          <strong className="text-[#d1b578]">Size Range:</strong> <span className="text-[#312223]">{property.property_price_range}</span>
+        </p>
+        <p>
+          <strong className="text-[#d1b578]">Type:</strong> <span className="text-[#312223]">{property.property_type_price_range}</span>
+        </p>
+      </div>
+    </motion.div>
+  )}
 
             {activeTab === "description" && (
               <motion.div
