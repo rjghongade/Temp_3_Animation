@@ -46,7 +46,7 @@ const HomePage = () => {
     <>
       {/* Contact Dialog */}
       <ContactDialog isOpen={isOpen} onClose={closeDialog} />
-
+    
       <Header />
       <PropertyPrices />
       <PropertyDetails />

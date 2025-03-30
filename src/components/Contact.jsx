@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate hook for redirection
 import {
   User,
   Mail,
@@ -13,6 +14,7 @@ import {
 import config from "../../config";
 
 export const ContactDialog = ({ isOpen, onClose }) => {
+  const navigate = useNavigate(); // Initialize the navigate function
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -53,12 +55,12 @@ export const ContactDialog = ({ isOpen, onClose }) => {
     };
 
     fetchData();
-    
+
     // Add scroll event listener to detect scrolling for header styling
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -151,11 +153,14 @@ export const ContactDialog = ({ isOpen, onClose }) => {
         message: "",
       });
 
-      // Close dialog after success (optional)
+      // Show success message briefly before redirecting
       setTimeout(() => {
-        setSubmitStatus(null);
+        // Close the dialog
         onClose();
-      }, 3000);
+        
+        // Redirect to thank you page using React Router
+        navigate('/thanku');
+      }, 1000);
     } catch (error) {
       setSubmitStatus("error");
       setErrorMessage(
@@ -167,7 +172,7 @@ export const ContactDialog = ({ isOpen, onClose }) => {
   };
 
   if (!isOpen) return null;
-  
+
   // Show loading indicator if data is still loading
   if (loading) {
     return (
@@ -178,7 +183,7 @@ export const ContactDialog = ({ isOpen, onClose }) => {
       </div>
     );
   }
-  
+
   // Show error message if there was an error fetching data
   if (error) {
     return (
@@ -199,32 +204,39 @@ export const ContactDialog = ({ isOpen, onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
       <div className="bg-[#170505] rounded-lg w-full max-w-md shadow-2xl animate-fadeIn border border-[#312223]">
-        <div className="flex items-center justify-between p-5 border-b border-[#312223]">
-          <div className="flex items-center">
-            {data && data.logo && (
-              <img 
-                src={data.logo} 
-                alt={data.property_name || "Amberwood"} 
-                className="h-12 max-w-[120px] mr-3" 
-              />
-            )}
-            <h3 className="text-xl font-semibold text-[#d1b578]">Contact Us</h3>
-          </div>
+        <div className="relative p-5 border-b border-[#312223] flex flex-col items-center text-center">
+          {/* Close Button - Positioned at the top-right */}
           <button
             onClick={onClose}
-            className="text-[#d1b578] hover:text-white transition-colors"
+            className="absolute top-10 right-5 text-[#d1b578] hover:text-white transition-colors"
           >
             <X size={24} />
           </button>
-        </div>
 
+          {/* Centered Content */}
+          <div className="flex flex-col items-center w-full">
+            {data?.logo && (
+              <img
+                src={data.logo}
+                alt={data.property_name || "Amberwood"}
+                className="h-12 max-w-[120px] mb-3"
+              />
+            )}
+            <h1 className="text-white text-lg sm:text-xl md:text-2xl font-semibold">
+              {data.hero_banner_heading}
+            </h1>
+            <h3 className="text-lg sm:text-xl font-semibold text-[#d1b578] mt-2">
+              Contact Us
+            </h3>
+          </div>
+        </div>
         <div className="p-6">
-          {submitStatus === "success" && (
+          {/* {submitStatus === "success" && (
             <div className="mb-6 bg-green-600/20 border border-green-500 text-green-400 p-4 rounded-lg flex items-center">
               <CheckCircle size={18} className="mr-2" />
-              Thank you for your message! We'll get back to you shortly.
+              Thank you for your message! Redirecting you to our thank you page...
             </div>
-          )}
+          )} */}
 
           {submitStatus === "error" && (
             <div className="mb-6 bg-red-600/20 border border-red-500 text-red-400 p-4 rounded-lg flex items-center">
@@ -252,11 +264,10 @@ export const ContactDialog = ({ isOpen, onClose }) => {
                     name="first_name"
                     value={formData.first_name}
                     onChange={handleInputChange}
-                    className={`w-full bg-[#1e0c0c] text-[#d1b578] border ${
-                      formErrors.first_name
+                    className={`w-full bg-[#1e0c0c] text-[#d1b578] border ${formErrors.first_name
                         ? "border-red-500"
                         : "border-[#312223]"
-                    } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-[#5f7858]`}
+                      } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-[#5f7858]`}
                     placeholder="First Name"
                   />
                 </div>
@@ -285,11 +296,10 @@ export const ContactDialog = ({ isOpen, onClose }) => {
                     name="last_name"
                     value={formData.last_name}
                     onChange={handleInputChange}
-                    className={`w-full bg-[#1e0c0c] text-[#d1b578] border ${
-                      formErrors.last_name
+                    className={`w-full bg-[#1e0c0c] text-[#d1b578] border ${formErrors.last_name
                         ? "border-red-500"
                         : "border-[#312223]"
-                    } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-[#5f7858]`}
+                      } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-[#5f7858]`}
                     placeholder="Last Name"
                   />
                 </div>
@@ -319,9 +329,8 @@ export const ContactDialog = ({ isOpen, onClose }) => {
                   name="email_id"
                   value={formData.email_id}
                   onChange={handleInputChange}
-                  className={`w-full bg-[#1e0c0c] text-[#d1b578] border ${
-                    formErrors.email_id ? "border-red-500" : "border-[#312223]"
-                  } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-[#5f7858]`}
+                  className={`w-full bg-[#1e0c0c] text-[#d1b578] border ${formErrors.email_id ? "border-red-500" : "border-[#312223]"
+                    } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-[#5f7858]`}
                   placeholder="email@example.com"
                 />
               </div>
@@ -350,11 +359,10 @@ export const ContactDialog = ({ isOpen, onClose }) => {
                   name="phone_number"
                   value={formData.phone_number}
                   onChange={handleInputChange}
-                  className={`w-full bg-[#1e0c0c] text-[#d1b578] border ${
-                    formErrors.phone_number
+                  className={`w-full bg-[#1e0c0c] text-[#d1b578] border ${formErrors.phone_number
                       ? "border-red-500"
                       : "border-[#312223]"
-                  } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-[#5f7858]`}
+                    } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-[#5f7858]`}
                   placeholder="Your phone number"
                 />
               </div>
@@ -383,9 +391,8 @@ export const ContactDialog = ({ isOpen, onClose }) => {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows="3"
-                  className={`w-full bg-[#1e0c0c] text-[#d1b578] border ${
-                    formErrors.message ? "border-red-500" : "border-[#312223]"
-                  } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-[#5f7858]`}
+                  className={`w-full bg-[#1e0c0c] text-[#d1b578] border ${formErrors.message ? "border-red-500" : "border-[#312223]"
+                    } rounded-lg pl-10 p-2 text-sm focus:outline-none focus:border-[#5f7858]`}
                   placeholder="Tell us about your requirements..."
                 ></textarea>
               </div>
