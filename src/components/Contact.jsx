@@ -202,9 +202,9 @@ export const ContactDialog = ({ isOpen, onClose }) => {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={onClose}>
       <div className="bg-[#170505] rounded-lg w-full max-w-md shadow-2xl animate-fadeIn border border-[#312223]">
-        <div className="relative p-5 border-b border-[#312223] flex flex-col items-center text-center">
+        <div className="relative p-5 border-b border-[#312223] flex flex-col items-center text-center" >
           {/* Close Button - Positioned at the top-right */}
           <button
             onClick={onClose}

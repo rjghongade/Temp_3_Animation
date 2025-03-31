@@ -49,10 +49,10 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-[#1e1e1e] text-[#d1b578] py-6 md:py-10 text-center border-t border-gray-700 px-4">
+    <footer className="bg-gradient-to-br from-[#170505] via-[#312223] to-[#170505] text-[#d1b578] py-6 md:py-10 text-center border-t border-gray-700 px-4">
       <div className="flex flex-col items-center space-y-4 max-w-6xl mx-auto">
         {reraData?.rera_url && (
-          <QRCodeCanvas value={reraData.rera_url} size={100} className="mb-2" />
+          <QRCodeCanvas value={reraData.rera_url}  height={150} width={150} className="mb-2 p-4 bg-white rounded-md" />
         )}
         <p className="text-xs sm:text-sm break-words">
           <span className="block sm:inline">Agent RERA: {footerData?.g_setting?.footer_agent_rera}</span>
