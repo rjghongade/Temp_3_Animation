@@ -55,7 +55,7 @@ const PropertyPrices = () => {
   }
 
   return (
-    <section className="relative w-full py-16 text-white overflow-hidden bg-gradient-to-br from-[#170505] to-[#312223]">
+    <section id='Price' className="relative w-full py-16 text-white overflow-hidden bg-gradient-to-br from-[#170505] to-[#312223]">
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#5f7858]/20 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>

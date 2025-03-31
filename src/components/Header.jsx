@@ -85,7 +85,7 @@ const Header = () => {
           <div className="hidden md:flex space-x-6 text-sm font-medium animate-bounce">
             {[
               { href: 'AmenitiesSection', label: 'Amenities', icon: <FiStar className="mr-1" /> },
-              { href: 'BanksSection', label: 'Price', icon: <span className="mr-1">₹</span> },
+              { href: 'Price', label: 'Price', icon: <span className="mr-1">₹</span> },
               { href: 'FloorPlans', label: 'About', icon: <FiHome className="mr-1" /> },
               { href: "Gallery", label: "Gallery", icon: <FiImage className="mr-1" /> },
               { href: "Location", label: "Location", icon: <FiMapPin className="mr-1" /> },
@@ -149,7 +149,7 @@ const Header = () => {
               <ul className="space-y-6 animate-blink">
                 {[
                   { href: 'AmenitiesSection', label: 'Amenities', icon: <FiStar className="mr-1" /> },
-                  { href: 'BanksSection', label: 'Price', icon: <span className="mr-1">₹</span> },
+                  { href: 'Price', label: 'Price', icon: <span className="mr-1">₹</span> },
                   { href: 'FloorPlans', label: 'About', icon: <FiHome className="mr-1" /> },
                   { href: "Gallery", label: "Gallery", icon: <FiImage className="mr-1" /> },
                   { href: "Location", label: "Location", icon: <FiMapPin className="mr-1" /> },

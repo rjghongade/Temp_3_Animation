@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate hook for redirection
 import {
   MapPin,
   Phone,
@@ -17,6 +18,7 @@ import {
 import config from "../../config";
 
 const ContactUs = () => {
+  const navigate = useNavigate(); // Initialize the navigate function
   const [contactData, setContactData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -57,7 +59,7 @@ const ContactUs = () => {
     }
     
     if (!formData.email_id.trim()) {
-      errors.email_id = "Email address is required";
+      //errors.email_id = "Email address is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email_id)) {
       errors.email_id = "Please enter a valid email address";
     }
@@ -110,13 +112,14 @@ const ContactUs = () => {
         message: "",
       });
       
-      // Navigate to thank you page after successful submission
-      // You can replace with the appropriate navigation method based on your setup
-      // (e.g., React Router's navigate, window.location, etc.)
+      // Show success message briefly before redirecting
       setTimeout(() => {
-        window.location.href = "/thanku";
-      }, 1500);
-      
+        // Close the dialog
+        //onClose();
+        
+        // Redirect to thank you page using React Router
+        navigate('/thank-you');
+      }, 1000);
     } catch (error) {
       setSubmitStatus("error");
       setErrorMessage(

@@ -100,7 +100,7 @@ export const ContactDialog = ({ isOpen, onClose }) => {
     }
 
     if (!formData.email_id.trim()) {
-      errors.email_id = "Email is required";
+      //errors.email_id = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email_id)) {
       errors.email_id = "Please enter a valid email address";
     }
@@ -159,7 +159,7 @@ export const ContactDialog = ({ isOpen, onClose }) => {
         onClose();
         
         // Redirect to thank you page using React Router
-        navigate('/thanku');
+        navigate('/thank-you');
       }, 1000);
     } catch (error) {
       setSubmitStatus("error");
