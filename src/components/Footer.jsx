@@ -9,39 +9,31 @@ const Footer = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchFooterData = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${config.API_URL}/footer?website=${config.SLUG_URL}`);
-        if (!response.ok) throw new Error("Failed to fetch footer data");
+        const [footerResponse, reraResponse] = await Promise.all([
+          fetch(`${config.API_URL}/footer?website=${config.SLUG_URL}`),
+          fetch(`${config.API_URL}/rera?website=${config.SLUG_URL}`)
+        ]);
 
-        const data = await response.json();
-        setFooterData(data);
+        if (!footerResponse.ok) throw new Error("Failed to fetch footer data");
+        if (!reraResponse.ok) throw new Error("Failed to fetch RERA data");
+
+        const footerJson = await footerResponse.json();
+        const reraJson = await reraResponse.json();
+
+        setFooterData(footerJson);
+        setReraData(reraJson.rera[0]);
         setLoading(false);
       } catch (err) {
-        console.error("Error fetching footer data:", err);
+        console.error("Error fetching data:", err);
         setError(err.message);
         setLoading(false);
       }
     };
 
-    fetchFooterData();
-  }, []);
-
-  useEffect(() => {
-    const fetchReraData = async () => {
-      try {
-        const response = await fetch(`${config.API_URL}/rera?website=${config.SLUG_URL}`);
-        if (!response.ok) throw new Error("Failed to fetch RERA data");
-
-        const data = await response.json();
-        setReraData(data.rera[0]);
-      } catch (err) {
-        console.error("Error fetching RERA data:", err);
-      }
-    };
-
-    fetchReraData();
+    fetchData();
   }, []);
 
   if (loading) {
@@ -54,12 +46,12 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#1e1e1e] text-[#d1b578] py-10 text-center border-t border-gray-700">
-      <div className="flex flex-col items-center space-y-4">
+      <div className="flex flex-col items-center space-y-4 px-4">
         {reraData?.rera_url && (
           <QRCodeCanvas value={reraData.rera_url} size={120} className="mb-2" />
         )}
 
-        <p className="text-sm">
+        <p className="text-sm max-w-md text-center">
           <span>Agent RERA: {footerData?.g_setting?.footer_agent_rera}</span> | 
           <span> Project RERA: {reraData?.rera_id}</span>{" "}
           {reraData?.rera_url && (
@@ -71,7 +63,7 @@ const Footer = () => {
 
         <hr className="border-gray-600 w-3/4" />
 
-        <p className="mt-2 text-xs max-w-3xl mx-auto">{footerData?.g_setting?.footer_disclamer}</p>
+        <p className="mt-2 text-xs max-w-md mx-auto">{footerData?.g_setting?.footer_disclamer || "No disclaimer available."}</p>
 
         <div className="text-xs mt-4">
           <p>
