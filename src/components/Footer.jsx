@@ -49,24 +49,24 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-gradient-to-b from-[#312223]/30 to-[#170505] text-[#d1b578] py-6 md:py-10 text-center border-t border-gray-700 px-4">
+    <footer className="bg-gradient-to-br from-[#170505] via-[#312223] to-[#170505] text-[#d1b578] py-6 md:py-10 text-center border-t border-gray-700 px-4 text-sm">
       <div className="flex flex-col items-center space-y-4 max-w-6xl mx-auto">
         {reraData?.rera_url && (
           <QRCodeCanvas value={reraData.rera_url}  height={150} width={150} className="mb-2 p-4 bg-white rounded-md" />
         )}
-        <p className="text-sm sm:text-sm break-words">
+        <p className="text-sm sm:text-base break-words">
           <span className="block sm:inline">Agent RERA: {footerData?.g_setting?.footer_agent_rera}</span>
           <span className="hidden sm:inline"> | </span>
           <span className="block sm:inline"> Project RERA: {reraData?.rera_id}</span>{" "}
           {reraData?.rera_url && (
             <a 
-              href={reraData.rera_url} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-red-500 block  text-xs sm:inline overflow-hidden text-ellipsis"
-            >
-              ({reraData.rera_url})
-            </a>
+            href={reraData.rera_url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-red-500 block  text-xs sm:inline overflow-hidden text-ellipsis"
+          >
+            ({reraData.rera_url})
+          </a>
           )}
         </p>
         <hr className="border-gray-600 w-full md:w-3/4" />
