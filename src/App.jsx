@@ -7,6 +7,7 @@ import BlogContent from "./components/BlogContent";
 // Import static SEO data directly
 import seoData from "../public/seodata.json";
 import ThankYouPage from "./components/ThankYouPage";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/" element={<HomePage />} exact />
             <Route path="/blogs/:id" element={<BlogContent />} exact />
             <Route path="/thank-you" element={<ThankYouPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           </Routes>
         </Router>
       </>
