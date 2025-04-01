@@ -63,7 +63,7 @@ const Footer = () => {
               href={reraData.rera_url} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-[#5f7858] block sm:inline overflow-hidden text-ellipsis"
+              className="text-[#5f7858] block text-xs sm:inline overflow-hidden text-ellipsis"
             >
               ({reraData.rera_url})
             </a>
