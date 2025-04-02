@@ -72,20 +72,20 @@ foreach ($blogData['blogs'] as $blog) {
 }
 
 // Add properties to sitemap
-foreach ($propertyData['property_details'] as $property) {
-    if (!isset($property['property_slug']) || strpos($property['property_slug'], '.com') !== false) {
-        continue; // Skip if property_slug is missing or contains ".com"
-    }
-    $lastMod = date('Y-m-d', strtotime($property['updated_at']));
-    $sitemap .= "
-        <url>
-            <loc>https://$finalDomain/studios/{$property['property_slug']}</loc>
-             <lastmod>$lastMod</lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
-        </url>
-    ";
-}
+// foreach ($propertyData['property_details'] as $property) {
+//     if (!isset($property['property_slug']) || strpos($property['property_slug'], '.com') !== false) {
+//         continue; // Skip if property_slug is missing or contains ".com"
+//     }
+//     $lastMod = date('Y-m-d', strtotime($property['updated_at']));
+//     $sitemap .= "
+//         <url>
+//             <loc>https://$finalDomain/studios/{$property['property_slug']}</loc>
+//              <lastmod>$lastMod</lastmod>
+//             <changefreq>weekly</changefreq>
+//             <priority>0.8</priority>
+//         </url>
+//     ";
+// }
 
 // Close XML
 $sitemap .= '</urlset>';
