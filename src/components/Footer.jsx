@@ -60,13 +60,13 @@ const Footer = () => {
           <span className="block sm:inline"> Project RERA: {reraData?.rera_id}</span>{" "}
           {reraData?.rera_url && (
             <a 
-              href={reraData.rera_url} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-[#5f7858] block sm:inline overflow-hidden text-ellipsis"
-            >
-              ({reraData.rera_url})
-            </a>
+            href={reraData.rera_url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-red-500 block  text-xs sm:inline overflow-hidden text-ellipsis"
+          >
+            ({reraData.rera_url})
+          </a>
           )}
         </p>
         <hr className="border-gray-600 w-full md:w-3/4" />
