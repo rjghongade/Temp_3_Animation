@@ -57,7 +57,7 @@ const Footer = () => {
         <p className="text-sm sm:text-base break-words">
           <span className="block sm:inline">Agent RERA: {footerData?.g_setting?.footer_agent_rera}</span>
           <span className="hidden sm:inline"> | </span>
-          <span className="block sm:inline"> Project RERA: {reraData?.rera_id}</span>{" "}
+          {reraData?.rera_id && (<span className="block sm:inline"> Project RERA: {reraData?.rera_id}</span>)}{" "}
           {reraData?.rera_url && (
             <a 
             href={reraData.rera_url} 
@@ -86,3 +86,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+{/* <span className="block sm:inline"> Project RERA: {reraData?.rera_id}</span> */}
