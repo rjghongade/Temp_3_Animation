@@ -19,14 +19,14 @@ const FloatingButtons = () => {
       id: "whatsapp",
       icon: <MessageCircle size={20} className="text-green-400" />,
       label: "WhatsApp",
-      href: `https://wa.me/918181817136?text=I%20am%20interested%20in%20${encodeURIComponent(propertyName)}`,
+      href: `https://wa.me/918600020568?text=I%20am%20interested%20in%20${encodeURIComponent(propertyName)}`,
       color: "bg-[#d1b578] hover:bg-[#caa76c]",
     },
     {
       id: "phone",
       icon: <Phone size={20} />,
       label: "Call",
-      href: "tel:+918181817136",
+      href: "tel:+918600020568",
       color: "bg-[#5f7858] hover:bg-[#506a4d]",
     },
     {
