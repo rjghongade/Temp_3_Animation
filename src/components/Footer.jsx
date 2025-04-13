@@ -58,10 +58,6 @@ const Footer = () => {
     );
   }
 
-  reraData.rera_url = null;
-  console.log('rera data ');
-  
-
   return (
     <footer className="bg-gradient-to-br from-[#170505] via-[#312223] to-[#170505] text-[#d1b578] py-6 md:py-10 text-center border-t border-gray-700 px-4 text-sm">
       <div className="flex flex-col items-center space-y-4 max-w-6xl mx-auto">
