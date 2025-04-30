@@ -61,16 +61,13 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-br from-[#170505] via-[#312223] to-[#170505] text-[#d1b578] py-6 md:py-10 text-center border-t border-gray-700 px-4 text-sm">
       <div className="flex flex-col items-center space-y-4 max-w-6xl mx-auto">
-        {reraData?.rera_url && (
-          <>
-            <QRCodeCanvas
-              value={reraData.rera_url}
-              height={150}
-              width={150}
-              className="mb-2 p-4 bg-white rounded-md"
-            />
-          </>
-        )}
+        <QRCodeCanvas
+          value={reraData?.rera_url || "https://maharera.maharashtra.gov.in/"}
+          height={150}
+          width={150}
+          className="mb-2 p-4 bg-white rounded-md"
+        />
+
         <p className="text-sm sm:text-base break-words">
           <span className="block sm:inline">
             Agent RERA: {footerData?.g_setting?.footer_agent_rera}
@@ -78,23 +75,20 @@ const Footer = () => {
           {reraData?.rera_url && (
             <>
               <span className="hidden sm:inline"> | </span>
-
               <span className="block sm:inline">
                 {" "}
-                Project RERA: {reraData?.rera_id}
-              </span>
+                Project RERA: {reraData?.rera_id || "Comming Soon"}
+              </span>{" "}
             </>
           )}{" "}
-          {reraData?.rera_url && (
-            <a
-              href={reraData.rera_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-red-500 block  text-xs sm:inline overflow-hidden text-ellipsis"
-            >
-              ({reraData.rera_url})
-            </a>
-          )}
+          <a
+            href={reraData?.rera_url || "https://maharera.maharashtra.gov.in/"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-red-500 block  text-xs sm:inline overflow-hidden text-ellipsis"
+          >
+            ({reraData?.rera_url || "https://maharera.maharashtra.gov.in/"})
+          </a>
         </p>
         <hr className="border-gray-600 w-full md:w-3/4" />
         <p className="mt-2 text-sm max-w-3xl mx-auto px-2">
