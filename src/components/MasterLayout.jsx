@@ -79,7 +79,7 @@ const MasterLayout = () => {
             </div>
           </div>
         ) : (
-          <p className="text-gray-400 text-lg">No master layout available.</p>
+          null
         )}
       </div>
 

@@ -18,6 +18,7 @@ import Gallery from '../components/Gallary';
 import FloatingButtons from '../components/FloatingButtons';
 import LocationAdvantages from '../components/LocationAdvantages';
 import { ContactDialog } from '../components/Contact';
+import Advertisement from '../components/Advertisement';
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,6 +62,7 @@ const HomePage = () => {
       <Gallery />
       <VideoTour />
       <Blogs />
+      <Advertisement />
       <FAQ />
       <ContactUs />
       <Footer />

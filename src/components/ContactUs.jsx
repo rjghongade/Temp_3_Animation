@@ -57,13 +57,6 @@ const ContactUs = () => {
     if (!formData.last_name.trim()) {
       errors.last_name = "Last name is required";
     }
-    
-    if (!formData.email_id.trim()) {
-      //errors.email_id = "Email address is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email_id)) {
-      errors.email_id = "Please enter a valid email address";
-    }
-    
     if (!formData.phone_number.trim()) {
       errors.phone_number = "Phone number is required";
     } else if (!/^[0-9]{10}$/.test(formData.phone_number.replace(/\s/g, ""))) {
@@ -175,17 +168,7 @@ const ContactUs = () => {
               <h3 className="text-[#d1b578] text-xl font-medium mb-4">Contact Information</h3>
               
               <div className="space-y-4">
-                {/* <div className="flex items-center">
-                  <div className="bg-[#5f7858]/20 p-2 rounded-full mr-3">
-                    <Mail size={20} className="text-[#5f7858]" />
-                  </div>
-                  <div>
-                    <p className="text-[#d1b578]">Email</p>
-                    <a href="mailto:contact@example.com" className="text-[#5f7858] hover:text-[#d1b578] transition-colors">
-                      contact@example.com
-                    </a>
-                  </div>
-                </div> */}
+                
                 
                 <div className="flex items-center">
                   <div className="bg-[#5f7858]/20 p-2 rounded-full mr-3">
@@ -199,48 +182,17 @@ const ContactUs = () => {
                   </div>
                 </div>
                 
-                {/* <div className="flex items-center">
-                  <div className="bg-[#5f7858]/20 p-2 rounded-full mr-3">
-                    <MapPin size={20} className="text-[#5f7858]" />
-                  </div>
-                  <div>
-                    <p className="text-[#d1b578]">Address</p>
-                    <p className="text-[#5f7858]">
-                      123 Nature Way, Forestville, CA 95436
-                    </p>
-                  </div>
-                </div> */}
+                
               </div>
             </div>
             
-            {/* Social media links */}
-            {/* <div className="flex gap-4">
-              <a href="#" className="bg-[#312223]/40 hover:bg-[#5f7858]/20 p-3 rounded-full transition-colors">
-                <Instagram size={20} className="text-[#d1b578]" />
-              </a>
-              <a href="#" className="bg-[#312223]/40 hover:bg-[#5f7858]/20 p-3 rounded-full transition-colors">
-                <Facebook size={20} className="text-[#d1b578]" />
-              </a>
-              <a href="#" className="bg-[#312223]/40 hover:bg-[#5f7858]/20 p-3 rounded-full transition-colors">
-                <Twitter size={20} className="text-[#d1b578]" />
-              </a>
-              <a href="#" className="bg-[#312223]/40 hover:bg-[#5f7858]/20 p-3 rounded-full transition-colors">
-                <Linkedin size={20} className="text-[#d1b578]" />
-              </a>
-            </div> */}
+            
           </div>
           
           {/* Right Form Section */}
           <div className="md:w-1/2">
             <div className="bg-[#312223]/40 backdrop-blur-lg p-8 rounded-2xl border border-[#312223]/50 shadow-xl">
-              {/* {submitStatus === "success" && (
-                <div className="mb-8 bg-[#5f7858]/20 border border-[#5f7858]/50 text-[#5f7858] p-5 rounded-xl flex items-center">
-                  <div className="bg-[#5f7858]/20 p-2 rounded-full mr-3">
-                    <Star size={24} className="text-[#5f7858]" />
-                  </div>
-                  <p>Thank you for your message! We'll get back to you shortly.</p>
-                </div>
-              )} */}
+              
 
               {submitStatus === "error" && (
                 <div className="mb-8 bg-[#170505]/20 border border-[#170505]/50 text-[#170505] p-5 rounded-xl flex items-center">
@@ -272,7 +224,7 @@ const ContactUs = () => {
                             ? "border-red-500"
                             : "border-[#312223]/50 group-focus-within:border-[#5f7858]"
                         } rounded-xl pl-12 p-4 focus:outline-none transition-all`}
-                        placeholder="Your first name"
+                        placeholder="Your first name*"
                       />
                     </div>
                     {formErrors.first_name && (
@@ -302,7 +254,7 @@ const ContactUs = () => {
                             ? "border-red-500"
                             : "border-[#312223]/50 group-focus-within:border-[#5f7858]"
                         } rounded-xl pl-12 p-4 focus:outline-none transition-all`}
-                        placeholder="Your last name"
+                        placeholder="Your last name*"
                       />
                     </div>
                     {formErrors.last_name && (
@@ -364,7 +316,7 @@ const ContactUs = () => {
                             ? "border-red-500"
                             : "border-[#312223]/50 group-focus-within:border-[#5f7858]"
                         } rounded-xl pl-12 p-4 focus:outline-none transition-all`}
-                        placeholder="Your phone number"
+                        placeholder="Your phone number*"
                       />
                     </div>
                     {formErrors.phone_number && (
