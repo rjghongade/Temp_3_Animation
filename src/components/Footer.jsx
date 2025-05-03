@@ -70,14 +70,14 @@ const Footer = () => {
 
         <p className="text-sm sm:text-base break-words">
           <span className="block sm:inline">
-            Agent RERA: {footerData?.g_setting?.footer_agent_rera}
+            Agent MahaRera: {footerData?.g_setting?.footer_agent_rera}
           </span>
           {reraData?.rera_url && (
             <>
               <span className="hidden sm:inline"> | </span>
               <span className="block sm:inline">
                 {" "}
-                Project RERA: {reraData?.rera_id || "Comming Soon"}
+                Project MahaRera: {reraData?.rera_id || "Comming Soon"}
               </span>{" "}
             </>
           )}{" "}
