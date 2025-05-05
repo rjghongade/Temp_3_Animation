@@ -129,7 +129,7 @@ const Header = () => {
             {data.hero_banner_subheading}
           </h2>
           <p className="mt-2 text-lg md:text-xl text-amber-200 animate-bounce">
-            {data.location} – {data.sublocation}
+            {data.sublocation}-{data.location}
           </p>
           <p className="mt-1 text-lg md:text-xl text-amber-100">
             {data.property_type_price_range_text} | {data.property_area_min_max}
