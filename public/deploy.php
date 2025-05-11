@@ -140,7 +140,7 @@ logMessage("Using npm at: $npmPath");
 
 // Start build process with backtrace enabled
 logMessage("Starting build process...");
-exec("export RUST_BACKTRACE=full && $npmPath run build 2>&1", $output, $returnVar);
+exec("export NODE_OPTIONS='--max-old-space-size=4096' && export RUST_BACKTRACE=full && $npmPath run build 2>&1", $output, $returnVar);
 
 // Log build output
 foreach ($output as $line) {
