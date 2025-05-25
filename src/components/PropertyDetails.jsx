@@ -68,9 +68,9 @@ const PropertyDetails = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
-              <span className="inline-block bg-[#312223] text-[#d1b578] px-4 py-2 rounded-lg text-sm font-semibold shadow-lg">
+              {/* <span className="inline-block bg-[#312223] text-[#d1b578] px-4 py-2 rounded-lg text-sm font-semibold shadow-lg">
                 {property.property_type}
-              </span>
+              </span> */}
             </motion.div>
 
             {/* Contact Us Button (Aligned Right) */}
