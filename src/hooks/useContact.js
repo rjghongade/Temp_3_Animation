@@ -35,16 +35,16 @@ export default function useContact() {
   return { contact, loading, error };
 }
 
-import useContact from "../hooks/useContact";
+// import useContact from "../hooks/useContact";
 
 
-const { contact, loading, error } = useContact();
+// const { contact, loading, error } = useContact();
 
- const { contact } = useContact();
+//  const { contact } = useContact();
 
-{ contact?.footer_phone }
+// { contact?.footer_phone }
 
-{ `tel:${contact?.footer_phone}` }
+// { `tel:${contact?.footer_phone}` }
 
 
 
