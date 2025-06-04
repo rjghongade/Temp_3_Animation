@@ -3,10 +3,14 @@ import { MessageCircle, Phone, User, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import seodata from "../../seodata.json";
 import { ContactDialog } from "./Contact";
+import useContact from "../hooks/useContact";
 
 const FloatingButtons = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  const { contact } = useContact();
+
 
   const toggleExpand = () => setIsExpanded(!isExpanded);
   const openDialog = () => setIsOpen(true);
@@ -19,14 +23,16 @@ const FloatingButtons = () => {
       id: "whatsapp",
       icon: <MessageCircle size={20} className="text-green-400" />,
       label: "WhatsApp",
-      href: `https://wa.me/918600020568?text=I%20am%20interested%20in%20${encodeURIComponent(propertyName)}`,
+      href: `https://wa.me/${  contact?.footer_phone}?text=I%20am%20interested%20in%20${encodeURIComponent(
+        propertyName
+      )}`,
       color: "bg-[#d1b578] hover:bg-[#caa76c]",
     },
     {
       id: "phone",
       icon: <Phone size={20} />,
       label: "Call",
-      href: "tel:+918600020568",
+      href: `tel:${contact?.footer_phone}`,
       color: "bg-[#5f7858] hover:bg-[#506a4d]",
     },
     {

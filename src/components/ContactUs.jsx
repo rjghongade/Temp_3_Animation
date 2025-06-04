@@ -16,6 +16,7 @@ import {
   Linkedin
 } from "lucide-react";
 import config from "../../config";
+import useContact from "../hooks/useContact";
 
 const ContactUs = () => {
   const navigate = useNavigate(); // Initialize the navigate function
@@ -27,6 +28,9 @@ const ContactUs = () => {
   const [submitting, setSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // null, "success", "error"
   const [errorMessage, setErrorMessage] = useState("");
+
+  const { contact } = useContact();
+
 
   // Form state with keys matching the input names
   const [formData, setFormData] = useState({
@@ -142,7 +146,10 @@ const ContactUs = () => {
   }
 
   return (
-    <div className="bg-gradient-to-br from-[#170505] via-[#312223] to-[#5f7858] p-8 relative overflow-hidden" id="contact">
+    <div
+      className="bg-gradient-to-br from-[#170505] via-[#312223] to-[#5f7858] p-8 relative overflow-hidden"
+      id="contact"
+    >
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-[#5f7858]/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#d1b578]/10 rounded-full blur-3xl"></div>
@@ -153,47 +160,45 @@ const ContactUs = () => {
             {contactData?.name || "Get In Touch"}
           </h2>
         </div>
-        
+
         <div className="flex flex-col md:flex-row gap-8">
           {/* Left Content Section */}
           <div className="md:w-1/2">
             <div className="mb-6">
               <p className="text-[#5f7858] mb-6">
-                We'd love to hear from you. Fill out the form and we'll get back to you as soon as possible.
+                We'd love to hear from you. Fill out the form and we'll get back
+                to you as soon as possible.
               </p>
             </div>
-            
+
             {/* Contact information */}
             <div className="bg-[#312223]/40 backdrop-blur-lg p-6 rounded-2xl border border-[#312223]/50 shadow-xl mb-6">
-              <h3 className="text-[#d1b578] text-xl font-medium mb-4">Contact Information</h3>
-              
+              <h3 className="text-[#d1b578] text-xl font-medium mb-4">
+                Contact Information
+              </h3>
+
               <div className="space-y-4">
-                
-                
                 <div className="flex items-center">
                   <div className="bg-[#5f7858]/20 p-2 rounded-full mr-3">
                     <Phone size={20} className="text-[#5f7858]" />
                   </div>
                   <div>
                     <p className="text-[#d1b578]">Phone</p>
-                    <a href="tel:+91 8600020568" className="text-[#5f7858] hover:text-[#d1b578] transition-colors">
-                      +91 8600020568
+                    <a
+                      href={`tel:${contact?.footer_phone}`}
+                      className="text-[#5f7858] hover:text-[#d1b578] transition-colors"
+                    >
+                      {contact?.footer_phone}
                     </a>
                   </div>
                 </div>
-                
-                
               </div>
             </div>
-            
-            
           </div>
-          
+
           {/* Right Form Section */}
           <div className="md:w-1/2">
             <div className="bg-[#312223]/40 backdrop-blur-lg p-8 rounded-2xl border border-[#312223]/50 shadow-xl">
-              
-
               {submitStatus === "error" && (
                 <div className="mb-8 bg-[#170505]/20 border border-[#170505]/50 text-[#170505] p-5 rounded-xl flex items-center">
                   <div className="bg-[#170505]/20 p-2 rounded-full mr-3">
@@ -206,7 +211,10 @@ const ContactUs = () => {
               <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <label htmlFor="first_name" className="block text-[#d1b578] mb-2 font-medium">
+                    <label
+                      htmlFor="first_name"
+                      className="block text-[#d1b578] mb-2 font-medium"
+                    >
                       First Name
                     </label>
                     <div className="relative group">
@@ -236,7 +244,10 @@ const ContactUs = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="last_name" className="block text-[#d1b578] mb-2 font-medium">
+                    <label
+                      htmlFor="last_name"
+                      className="block text-[#d1b578] mb-2 font-medium"
+                    >
                       Last Name
                     </label>
                     <div className="relative group">
@@ -268,7 +279,10 @@ const ContactUs = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <label htmlFor="email_id" className="block text-[#d1b578] mb-2 font-medium">
+                    <label
+                      htmlFor="email_id"
+                      className="block text-[#d1b578] mb-2 font-medium"
+                    >
                       Email Address
                     </label>
                     <div className="relative group">
@@ -298,7 +312,10 @@ const ContactUs = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="phone_number" className="block text-[#d1b578] mb-2 font-medium">
+                    <label
+                      htmlFor="phone_number"
+                      className="block text-[#d1b578] mb-2 font-medium"
+                    >
                       Phone Number
                     </label>
                     <div className="relative group">
@@ -329,7 +346,10 @@ const ContactUs = () => {
                 </div>
 
                 <div className="mb-8">
-                  <label htmlFor="message" className="block text-[#d1b578] mb-2 font-medium">
+                  <label
+                    htmlFor="message"
+                    className="block text-[#d1b578] mb-2 font-medium"
+                  >
                     Your Message
                   </label>
                   <div className="relative group">
