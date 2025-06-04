@@ -23,7 +23,7 @@ const FloatingButtons = () => {
       id: "whatsapp",
       icon: <MessageCircle size={20} className="text-green-400" />,
       label: "WhatsApp",
-      href: `https://wa.me/${  contact?.footer_phone}?text=I%20am%20interested%20in%20${encodeURIComponent(
+      href: `https://wa.me/${contact?.footer_phone}?text=I%20am%20interested%20in%20${encodeURIComponent(
         propertyName
       )}`,
       color: "bg-[#d1b578] hover:bg-[#caa76c]",
